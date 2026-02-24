@@ -6,6 +6,17 @@ For multi-model teams that mix Claude Code with Codex CLI, see [codex-partner](h
 
 ---
 
+## Install as Claude Code Skill
+
+```bash
+git clone https://github.com/Real-AI-Engineering/teams-field-guide.git ~/.claude/skills/teams-field-guide-repo
+ln -s ~/.claude/skills/teams-field-guide-repo/skills/teams-advisor ~/.claude/skills/teams-advisor
+```
+
+The `teams-advisor` skill activates automatically when you work with multi-agent setups, ask about orchestration patterns, or hit team-related issues.
+
+---
+
 ## Table of Contents
 
 1. [Requirements & Version Support](#1-requirements--version-support)
