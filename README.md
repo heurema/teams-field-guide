@@ -8,12 +8,27 @@ For multi-model teams that mix Claude Code with Codex CLI, see [codex-partner](h
 
 ## Install as Claude Code Skill
 
+**One-liner:**
+
 ```bash
-git clone https://github.com/Real-AI-Engineering/teams-field-guide.git ~/.claude/skills/teams-field-guide-repo
-ln -s ~/.claude/skills/teams-field-guide-repo/skills/teams-advisor ~/.claude/skills/teams-advisor
+git clone https://github.com/Real-AI-Engineering/teams-field-guide.git ~/.claude/skills/teams-field-guide && ln -s ~/.claude/skills/teams-field-guide/skills/teams-advisor ~/.claude/skills/teams-advisor
 ```
 
-The `teams-advisor` skill activates automatically when you work with multi-agent setups, ask about orchestration patterns, or hit team-related issues.
+**Verify:** restart Claude Code, then ask `"which agent system should I use?"` — the `teams-advisor` skill should activate and walk you through the decision tree.
+
+**Update:**
+
+```bash
+cd ~/.claude/skills/teams-field-guide && git pull
+```
+
+**Uninstall:**
+
+```bash
+rm ~/.claude/skills/teams-advisor && rm -rf ~/.claude/skills/teams-field-guide
+```
+
+The skill activates automatically on queries about agent teams, subagents, multi-agent patterns, team bugs, or orchestration.
 
 ---
 
