@@ -22,6 +22,7 @@ For multi-model teams that mix Claude Code with Codex CLI, see [codex-partner](h
 12. [Ecosystem](#12-ecosystem)
 13. [Contributing](#13-contributing)
 14. [Sources](#14-sources)
+15. [Changelog](#15-changelog)
 
 ---
 
@@ -99,7 +100,7 @@ Custom agents are defined as Markdown files with YAML frontmatter. The file body
 | `maxTurns` | No | integer | unlimited | Maximum agentic turns before the agent stops. |
 | `skills` | No | list | none | Skills loaded at agent startup. Listed skills are fully injected (not lazy). Unlisted skills are invisible to the agent. |
 | `mcpServers` | No | list | inherited | MCP servers available to this agent. String reference or inline `{name: config}` object. |
-| `hooks` | No | object | none | Lifecycle hooks scoped to this agent. Note: only 6 of the 16 hook types work in agent frontmatter (see [Experimental Features](#9-experimental-features)). |
+| `hooks` | No | object | none | Lifecycle hooks scoped to this agent. Note: only 6 of the 16 hook types work in agent frontmatter: `PreToolUse`, `PostToolUse`, `PermissionRequest`, `PostToolUseFailure`, `Stop`, `SubagentStop` (see [Experimental Features](#9-experimental-features)). |
 | `memory` | No | string | none | `user`, `project`, or `local`. Enables persistent cross-session memory. First 200 lines of `MEMORY.md` are auto-injected. |
 | `background` | No | boolean | false | Always run as a background task. Added v2.1.49. |
 | `isolation` | No | string | none | `worktree` — run in an isolated git worktree with auto-cleanup. Added v2.1.49. |
@@ -518,7 +519,7 @@ These are behavioral quirks that are not bugs per se but will trip you up:
 - **Teammates do not see each other's text output.** The only way to share information between teammates is via `SendMessage` or through files written to the shared codebase.
 - **`bypassPermissions` for teammates** requires setting it in `~/.claude/settings.json` (global), not project-level settings ([#26479](https://github.com/anthropics/claude-code/issues/26479)).
 - **Git worktree path access** requires adding `additionalDirectories: ["../worktree-prefix-*"]` to permissions ([#12748](https://github.com/anthropics/claude-code/issues/12748)).
-- **Custom agents are not available as `subagent_type`** from `~/.claude/agents/`. To use a custom agent's system prompt in a Task call, inline the prompt. Plugin agents (e.g., `superpowers:code-reviewer`) do work as `subagent_type`.
+- **User-level** custom agents (`~/.claude/agents/`) cannot be used as `subagent_type` in Task calls. **Project-level** agents (`.claude/agents/`) can be referenced by name. Plugin agents (e.g., `superpowers:code-reviewer`) also work. If your user-level agent isn't found, use `subagent_type="general-purpose"` and inline the system prompt.
 
 ---
 
@@ -567,6 +568,23 @@ isolation: worktree
 ```
 
 Runs the agent in an isolated git worktree. The worktree is created at agent start and cleaned up automatically when the agent finishes. Prevents agents from conflicting on shared files. Custom branch name not yet supported ([#27749](https://github.com/anthropics/claude-code/issues/27749)).
+
+### `use-when:` in Skill Frontmatter
+
+⚠️ **Does not work.** Despite appearing in some community examples, the `use-when:` field in skill frontmatter is not functional ([#27569](https://github.com/anthropics/claude-code/issues/27569)). Use the `description:` field instead to control when a skill is triggered.
+
+### Working Hooks in Agent Frontmatter
+
+⚠️ Only 6 of the 16 hook event types fire correctly when defined in agent frontmatter `hooks:`. The 6 that work:
+
+- `PreToolUse`
+- `PostToolUse`
+- `PermissionRequest`
+- `PostToolUseFailure`
+- `Stop`
+- `SubagentStop`
+
+The remaining 10 hook types (e.g., `TeammateIdle`, `TaskCompleted`, `SubagentStart`, `ConfigChange`, `WorktreeCreate`, `WorktreeRemove`, and others) must be defined in `settings.json` at the project or user level and do not fire from agent frontmatter.
 
 ### ~37 Agent Limit
 
@@ -648,7 +666,7 @@ claude \
 
 **Decision rule:** Architecture / synthesis → opus. Volume / review → sonnet. Simple mechanical tasks → haiku.
 
-**On code review specifically:** Sonnet with a code-review skill outperforms opus on security issue detection and is approximately 5x cheaper. Use sonnet for all code review tasks.
+**On code review specifically:** Sonnet is approximately 4-6x cheaper than Opus at list pricing. For structured review tasks like code review, sonnet with a focused skill produces comparable or better results — particularly for security issue detection where a narrower focus reduces false negatives. Use sonnet for all code review tasks.
 
 ### Practical Tips
 
@@ -722,7 +740,7 @@ Top projects by usefulness and community adoption:
 | [cs50victor/claude-code-teams-mcp](https://github.com/cs50victor/claude-code-teams-mcp) | 181 | Standalone MCP reimplementation of the Agent Teams protocol; enables mixed Claude + OpenCode teams |
 | [modu-ai/moai-adk](https://github.com/modu-ai/moai-adk) | 750 | Agent Development Kit with typed team roles (backend-dev, frontend-dev, tester) |
 | [alinaqi/claude-bootstrap](https://github.com/alinaqi/claude-bootstrap) | 508 | Scaffolds agent teams by default in every new project |
-| [jayminwest/overstory](https://github.com/jayminwest/overstory) | — | Coordinator → Supervisor → Workers hierarchy with SQLite mail and 4-tier conflict resolution |
+| [jayminwest/overstory](https://github.com/jayminwest/overstory) | — | Coordinator → Supervisor → Workers hierarchy with SQLite-based message passing and 4-tier conflict resolution |
 | [Ruya-AI/cozempic](https://github.com/Ruya-AI/cozempic) | 98 | Context pruning that protects team coordination state |
 | [Osso/safe-task-claim](https://github.com/Osso/safe-task-claim) | — | Atomic task claiming MCP server — prevents race conditions in swarm patterns |
 
@@ -777,3 +795,9 @@ See [CONTRIBUTING.md](CONTRIBUTING.md).
 - [Shared Local Memory for Agent Teams](https://news.ycombinator.com/item?id=46913360)
 - [24 Simultaneous Agents](https://news.ycombinator.com/item?id=47099597)
 - [Amux tmux Multiplexer for Agents](https://news.ycombinator.com/item?id=47104424)
+
+---
+
+## 15. Changelog
+
+See [CHANGELOG.md](CHANGELOG.md) for version history.

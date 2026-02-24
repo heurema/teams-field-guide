@@ -11,7 +11,7 @@ Projects that implement or extend the core agent coordination protocol.
 | Project | Stars | Description |
 |---------|-------|-------------|
 | [cs50victor/claude-code-teams-mcp](https://github.com/cs50victor/claude-code-teams-mcp) | 181 | Standalone MCP server reimplementing Claude Code's internal Agent Teams protocol. Enables mixed Claude + OpenCode teams, adds 12 tools (vs 7 built-in), and provides workarounds for zombie teammates and `model=` bugs. |
-| [jayminwest/overstory](https://github.com/jayminwest/overstory) | — | Multi-tier orchestration: Coordinator → Supervisor → Workers. SQLite-based message passing, 4-tier conflict resolution, 2000+ tests. |
+| [jayminwest/overstory](https://github.com/jayminwest/overstory) | — | Multi-tier orchestration: Coordinator → Supervisor → Workers hierarchy with SQLite-based message passing and 4-tier conflict resolution. |
 | [Osso/safe-task-claim](https://github.com/Osso/safe-task-claim) | — | Atomic task claiming MCP server. Prevents race conditions when multiple swarm workers attempt to claim the same task simultaneously. |
 | [MaorBril/clauder](https://github.com/MaorBril/clauder) | — | Cross-agent bridge using MCP + SQLite. Enables coordination across Claude, Cursor, Windsurf, Codex, and Gemini agents. |
 | [SukinShetty/Nemp-memory](https://github.com/SukinShetty/Nemp-memory) | — | Shared local JSON memory store for agent teams. Provides persistent key-value state accessible by all agents in a session. |
