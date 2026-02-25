@@ -824,6 +824,17 @@ See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ---
 
+## See Also
+
+Other [Real-AI-Engineering](https://github.com/Real-AI-Engineering) projects:
+
+- **[sigil](https://github.com/Real-AI-Engineering/sigil)** — risk-adaptive development pipeline with adversarial code review
+- **[herald](https://github.com/Real-AI-Engineering/herald)** — daily curated news digest plugin for Claude Code
+- **[codex-partner](https://github.com/Real-AI-Engineering/codex-partner)** — using Codex CLI as second AI alongside Claude Code
+- **[proofpack](https://github.com/Real-AI-Engineering/proofpack)** — proof-carrying CI gate for AI agent changes
+
+---
+
 ## 15. Changelog
 
 See [CHANGELOG.md](CHANGELOG.md) for version history.
