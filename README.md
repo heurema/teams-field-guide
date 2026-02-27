@@ -2,7 +2,7 @@
 
 This is an independently maintained reference for engineers building multi-agent systems with Claude Code. It covers the two parallel multi-agent systems (Subagents and Agent Teams), their full configuration schemas, known bugs with workarounds, orchestration patterns, cost optimization, and a catalog of ecosystem projects. It is intended for AI engineers who want to move beyond toy examples and ship reliable agentic pipelines in production.
 
-For multi-model teams that mix Claude Code with Codex CLI, see [codex-partner](https://github.com/Real-AI-Engineering/codex-partner).
+For multi-model teams that mix Claude Code with Codex CLI or Gemini CLI, see [arbiter](https://github.com/heurema/arbiter).
 
 ---
 
@@ -830,7 +830,7 @@ Other [Real-AI-Engineering](https://github.com/Real-AI-Engineering) projects:
 
 - **[sigil](https://github.com/Real-AI-Engineering/sigil)** — risk-adaptive development pipeline with adversarial code review
 - **[herald](https://github.com/Real-AI-Engineering/herald)** — daily curated news digest plugin for Claude Code
-- **[codex-partner](https://github.com/Real-AI-Engineering/codex-partner)** — using Codex CLI as second AI alongside Claude Code
+- **[arbiter](https://github.com/heurema/arbiter)** — multi-AI orchestrator (Codex + Gemini)
 - **[proofpack](https://github.com/Real-AI-Engineering/proofpack)** — proof-carrying CI gate for AI agent changes
 
 ---
