@@ -1,8 +1,17 @@
-# Claude Code Agent Teams — Field Guide
+```
+   __                                  _____      __    __                  _     __
+  / /____  ____ _____ ___  _____      / __(_)__  / /___/ /     ____ ___  __(_)___/ /__
+ / __/ _ \/ __ `/ __ `__ \/ ___/_____/ /_/ / _ \/ / __  /_____/ __ `/ / / / / __  / _ \
+/ /_/  __/ /_/ / / / / / (__  )_____/ __/ /  __/ / /_/ /_____/ /_/ / /_/ / / /_/ /  __/
+\__/\___/\__,_/_/ /_/ /_/____/     /_/ /_/\___/_/\__,_/      \__, /\__,_/_/\__,_/\___/
+                                                            /____/
+```
 
-This is an independently maintained reference for engineers building multi-agent systems with Claude Code. It covers the two parallel multi-agent systems (Subagents and Agent Teams), their full configuration schemas, known bugs with workarounds, orchestration patterns, cost optimization, and a catalog of ecosystem projects. It is intended for AI engineers who want to move beyond toy examples and ship reliable agentic pipelines in production.
+**Production reference for Claude Code multi-agent systems.**
 
-For multi-model teams that mix Claude Code with Codex CLI or Gemini CLI, see [arbiter](https://github.com/heurema/arbiter).
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+
+> Subagents, Agent Teams, configuration schemas, known bugs, orchestration patterns, and cost optimization. For multi-model teams, see [arbiter](https://github.com/heurema/arbiter).
 
 ---
 
